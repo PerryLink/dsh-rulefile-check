@@ -1,0 +1,188 @@
+# 规则库文件自检核对 规则库
+#
+# 规则数据与代码分离：替换本文件即可切换规则集版本，无需改动 TypeScript。
+#
+# 条款引用纪律（由 shared/ruleset.ts 强制校验）：
+#   - 每条规则必须写全 document / number / clause / excerpt / kind / source，
+#     且 excerpt 必须是逐字摘录，不得改写。
+#   - kind: direct                       条款直接规定了所检查的要求
+#   - kind: derived-from-principle       条款未直接规定，仅能由原则性条款推论（severity 最多 warn）
+#   - kind: institutional-configuration 阈值出自本机构配置（severity 最多 info）
+#
+# ⚠️⚠️ 本规则库的最特别之处：**它检查的对象是"规则库"本身**。
+#   它核对的是规则库的自洽与条款引用纪律：
+#     规则编号是否唯一、依据字段是否写全、摘录是否有实质长度、
+#     来源是否为可访问的链接、依据类型与定级是否匹配（效力上限）、
+#     检查类型是否为引擎所支持、是否残留模板占位符。
+#
+# ⚠️⚠️ 本规则库的依据说明：**这一层是"自定纪律"，不是国家标准。**
+#   "excerpt 必须是逐字摘录""derived-from-principle 不得定级为 error"
+#   是本插件家族**自己在 shared/ruleset.ts 里强制执行的引用纪律**，
+#   其依据来自**知识诚实的一般原则**（不得把描述伪装成引文、不得把推论伪装成规定），
+#   而不是任何一部法律法规或国家标准。因此每条 basis 的 document 都如实写明这一点，
+#   kind 一律为 derived-from-principle（封顶 warn）。
+#
+# ⚠️⚠️ 另一条**必须保留**的边界：**本插件绝不判定某条规则的内容是否正确、
+#   依据引用得是否恰当、定级是否合理**。
+#   它只核对**形式**：字段写全没有、摘录够不够长、链接像不像链接、定级有没有超过上限。
+#   → **它发现不了"引了一条真实但不相关的条款"** —— 这是本插件能力的上限，
+#     也再次说明自动化检查不能替代人工审读。
+
+plugin: dsh-rulefile-check
+version: "2026.1"
+
+rules:
+  - id: RF-001
+    title: 规则编号应在规则库内唯一
+    severity: warn
+    basis:
+      document: 本插件家族的条款引用纪律（自定纪律，非国家标准）
+      number: 无编号（本规则库自定）
+      clause: 不属于标准条款（本条为规则库形式核对）
+      excerpt: 该条文本次未取得：核查未获得该文件的逐字原文，本规则库不伪造引文。
+      kind: derived-from-principle
+      source: https://github.com/ （本条依据是本插件家族的自定纪律，其载体即本仓库自身；此为主机首页）
+    params:
+        check:
+          kind: unique
+          field: ruleId
+    note: >-
+      规则编号唯一是"每条规则只被引用一次"的**前提条件**：
+      编号重复会让报告里的 issue.id 指向两条不同的规则，命中信息无法追溯。
+      **本条依据是本插件家族的引用纪律，不是任何标准条文**，故封顶 warn。
+      比较时忽略空白字符。
+
+  - id: RF-002
+    title: 每条规则都应写全依据字段
+    severity: warn
+    basis:
+      document: 本插件家族的条款引用纪律（自定纪律，非国家标准）
+      number: 无编号（本规则库自定）
+      clause: 不属于标准条款（本条为规则库形式核对）
+      excerpt: 该条文本次未取得：核查未获得该文件的逐字原文，本规则库不伪造引文。
+      kind: derived-from-principle
+      source: https://github.com/ （本条依据是本插件家族的自定纪律，其载体即本仓库自身；此为主机首页）
+    params:
+        check:
+          kind: presenceAny
+          fields: ["document","clause"]
+          fix: 补全依据文件与条款号；本条只核对字段是否存在
+    note: >-
+      依据字段是报告的"凭什么这么说"那一栏：缺了它，命中信息就变成无出处的断言。
+      **本条依据是本插件家族的引用纪律**，故封顶 warn。
+      本条只核对"至少填了一个"，**不判断所引条款是否真实存在、是否与规则相关**。
+
+  - id: RF-003
+    title: 摘录应有实质长度
+    severity: warn
+    basis:
+      document: 本插件家族的条款引用纪律（自定纪律，非国家标准）
+      number: 无编号（本规则库自定）
+      clause: 不属于标准条款（本条为规则库形式核对）
+      excerpt: 该条文本次未取得：核查未获得该文件的逐字原文，本规则库不伪造引文。
+      kind: derived-from-principle
+      source: https://github.com/ （本条依据是本插件家族的自定纪律，其载体即本仓库自身；此为主机首页）
+    params:
+        check:
+          kind: minLength
+          field: excerpt
+          minLength: 8
+          fix: 摘录应为逐字引文；过短的"摘录"通常只是描述，不是引文
+    note: >-
+      这是 shared/ruleset.ts 在加载时就强制的那条规则的**台账侧对应物**：
+      八个字以下的"摘录"几乎不可能是一句完整的话，通常只是对条款的描述。
+      **本条依据是本插件家族的引用纪律**，故封顶 warn。
+      ⚠️ 长度只是**必要条件**：写满二十字的描述照样不是引文，
+      **本条发现不了"以描述冒充引文"** —— 那需要人去比对原文。
+
+  - id: RF-004
+    title: 来源应为可访问的链接
+    severity: warn
+    basis:
+      document: 本插件家族的条款引用纪律（自定纪律，非国家标准）
+      number: 无编号（本规则库自定）
+      clause: 不属于标准条款（本条为规则库形式核对）
+      excerpt: 该条文本次未取得：核查未获得该文件的逐字原文，本规则库不伪造引文。
+      kind: derived-from-principle
+      source: https://github.com/ （本条依据是本插件家族的自定纪律，其载体即本仓库自身；此为主机首页）
+    params:
+        check:
+          kind: pattern
+          field: source
+          pattern: ^https?://[^\s]+$
+          fix: 来源应写成 http(s) 链接，便于复核
+    note: >-
+      来源是给人**复核**用的入口：写成"某某网站"无法点击，等于没有来源。
+      **本条依据是本插件家族的引用纪律**，故封顶 warn。
+      ⚠️ 本条**只核对形式**（是不是 http(s) 开头的链接），
+      **不访问该链接、不判断链接是否有效、更不判断该页面是否真含所引条文**。
+
+  - id: RF-005
+    title: 依据类型与定级应符合效力上限
+    severity: warn
+    basis:
+      document: 本插件家族的条款引用纪律（自定纪律，非国家标准）
+      number: 无编号（本规则库自定）
+      clause: 不属于标准条款（本条为规则库形式核对）
+      excerpt: 该条文本次未取得：核查未获得该文件的逐字原文，本规则库不伪造引文。
+      kind: derived-from-principle
+      source: https://github.com/ （本条依据是本插件家族的自定纪律，其载体即本仓库自身；此为主机首页）
+    params:
+        check:
+          kind: conditionalPresence
+          conditionField: basisKind
+          requiredFields: ["severity"]
+          conditionValues: []
+          conditionPattern: ^(derived-from-principle|institutional-configuration)$
+    note: >-
+      效力上限是本家族最重要的纪律：**由原则推论或本机构配置的检查不得定级为 error**，
+      因为它们不是"违反了某条明文规定"，只是"值得人工看一眼的线索"。
+      **本条依据是本插件家族的引用纪律**（shared/ruleset.ts 在加载时会直接拒绝违规规则库），故封顶 warn。
+      ⚠️ 本条只核对"依据类型为推论或配置时是否填了定级"，
+      **定级是否真的没超过上限由加载器强制**（超限会抛 "strongest permitted severity"），
+      本插件在台账侧只能核对字段齐备，**不能代替加载器判断**。
+
+  - id: RF-006
+    title: 检查类型应是引擎所支持的取值
+    severity: warn
+    basis:
+      document: 本插件家族的检查引擎契约（自定纪律，非国家标准）
+      number: 无编号（本规则库自定）
+      clause: 不属于标准条款（本条为规则库形式核对）
+      excerpt: 该条文本次未取得：核查未获得该文件的逐字原文，本规则库不伪造引文。
+      kind: derived-from-principle
+      source: https://github.com/ （本条依据是本插件家族的自定纪律，其载体即本仓库自身；此为主机首页）
+    params:
+        check:
+          kind: enum
+          field: checkKind
+          values: []
+    note: >-
+      规则库里写了一个引擎不认识的 check.kind 时，**这条规则会静默不执行**——
+      这正是本插件家族最想避免的失效方式。因此本条把支持的取值列出来核对。
+      **本条依据是本插件家族的引擎契约**，故封顶 warn。
+      ⚠️ **values 出厂为空，未配置即进 skipped**：因为"支持哪些 kind"取决于你实际使用的引擎版本，
+      本插件**不硬编码自己的 kind 清单**（否则引擎加了一种 kind 就要改本插件）。
+      把当前引擎支持的 kind 填进 values 即可，例如
+      [presence, presenceAny, enum, pattern, date, number, unique, ...]。
+
+  - id: RF-007
+    title: 规则库应声明名称、适用插件与版本
+    severity: warn
+    basis:
+      document: 本插件家族的规则库契约（自定纪律，非国家标准）
+      number: 无编号（本规则库自定）
+      clause: 不属于标准条款（本条为规则库形式核对）
+      excerpt: 该条文本次未取得：核查未获得该文件的逐字原文，本规则库不伪造引文。
+      kind: derived-from-principle
+      source: https://github.com/ （本条依据是本插件家族的自定纪律，其载体即本仓库自身；此为主机首页）
+    params:
+        check:
+          kind: headerPresence
+          fields: ["packName","plugin","version"]
+    note: >-
+      规则库若不写明名称、适用插件与版本，替换规则库时就无法确认它属于哪个插件、是哪一版。
+      **本条依据是本插件家族的规则库契约**（dsh.bundle 与 ruleset.plugin 都依赖这三项），故封顶 warn。
+      配置项 packName 对应规则库名称，plugin 对应适用插件名，version 对应规则库版本。
+
+disabled: []

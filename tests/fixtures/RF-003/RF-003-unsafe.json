@@ -1,0 +1,20 @@
+{
+  "packName": "某某规则库",
+  "plugin": "dsh-rulefile-check",
+  "version": "2026.1",
+  "rows": [
+    {
+      "规则编号": "XX-001",
+      "规则标题": "示例规则标题",
+      "定级": "warn",
+      "依据类型": "derived-from-principle",
+      "依据文件": "《某某标准》",
+      "条款号": "第 5.3 条",
+      "摘录": "见标准。",
+      "来源": "https://openstd.samr.gov.cn/",
+      "检查类型": "presence",
+      "参数": "field: title",
+      "是否停用": "否"
+    }
+  ]
+}

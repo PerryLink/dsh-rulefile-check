@@ -1,0 +1,21 @@
+{
+  "ruleId": "RF-004",
+  "pairs": [
+    {
+      "name": "expected-state",
+      "material": "RF-004-compliant.json",
+      "expect": {
+        "ruleId": "RF-004",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "RF-004-unsafe.json",
+      "expect": {
+        "ruleId": "RF-004",
+        "count": 1
+      }
+    }
+  ]
+}

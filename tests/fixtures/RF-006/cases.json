@@ -1,0 +1,32 @@
+{
+  "ruleId": "RF-006",
+  "configure": {
+    "RF-006": {
+      "values": [
+        "presence",
+        "presenceAny",
+        "enum",
+        "pattern",
+        "unique"
+      ]
+    }
+  },
+  "pairs": [
+    {
+      "name": "expected-state",
+      "material": "RF-006-compliant.json",
+      "expect": {
+        "ruleId": "RF-006",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "RF-006-unsafe.json",
+      "expect": {
+        "ruleId": "RF-006",
+        "count": 1
+      }
+    }
+  ]
+}
