@@ -1,4 +1,27 @@
-# dsh-rulefile-check
+# dsh-rulefile-check — Rule pack self-check against the citation discipline and severity ceilings
+
+`dsh-rulefile-check` reads one rule pack — the pack header plus one row per rule — and checks that pack against the citation discipline its plugin family enforces: that every rule id is unique within the pack, that both basis fields are filled in, that no excerpt is shorter than the minimum length, that every source is written as an http(s) link, that a rule whose basis kind is `derived-from-principle` or `institutional-configuration` carries a severity, that the check kind is one the engine supports, and that the pack header declares its name, plugin and version.
+
+## What it answers
+
+| You ask | What it answers |
+|---|---|
+| The same rule id appears on two rules in the pack. | `RF-001` reports the repeated id, because a duplicate makes `issue.id` point at two different rules and the hit can no longer be traced back. Comparison ignores whitespace. It can only see one pack at a time: it does not compare two packs with each other or look anything up in a register. |
+| A rule carries only `document` and says nothing about the clause. | `RF-002` checks that at least one of the two basis fields is filled in, so a rule whose `document` is present passes. It does not judge whether the cited clause really exists or whether it relates to the rule. |
+| The excerpt is a one-sentence description of the clause rather than a quotation. | `RF-003` requires the excerpt to exist and to be at least eight characters long. Length is necessary, not sufficient: a twenty-character description is still not a quotation, and this rule cannot tell the difference — it does not compare the excerpt against the original clause. |
+| The source reads `某某网站` instead of a link. | `RF-004` reports it, because the source field has to look like an http(s) link. It checks the form only: it does not visit the link, does not tell you whether the link works, and does not tell you whether the page really contains the clause being cited. |
+| A rule derived from a principle is filed as `error`. | `RF-005` confirms that a rule whose basis kind is `derived-from-principle` or `institutional-configuration` states a severity at all. Whether that severity actually respects the ceiling is enforced by the loader, which rejects such a pack outright with `strongest permitted severity`; this check only covers the field being present and cannot replace the loader. |
+| The pack writes a `check.kind` the engine does not know — and does it declare its `packName` and `version`? | `RF-006` reports the unknown `check.kind`, because such a rule is silently not executed. Its list of supported kinds ships empty, since which kinds exist depends on the engine version, so an unconfigured pack puts that rule in `skipped` instead of passing it; it only compares against the list you supply. `RF-007` checks the header for `packName`, `plugin` and `version` together, because without them you cannot tell which plugin a pack belongs to, or which revision, when you swap it in. Neither rule verifies that the declared values match the plugin actually in use. |
+
+## Standards it follows
+
+This rule pack cites no public standard: every rule's basis is the plugin family's own self-imposed citation discipline, its engine contract and its pack contract, so the entries below name the family's internal contracts rather than any statute or national standard.
+
+| Document | Number | Cited by rules |
+|---|---|---|
+| 本插件家族的条款引用纪律（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-001, RF-002, RF-003, RF-004, RF-005 |
+| 本插件家族的检查引擎契约（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-006 |
+| 本插件家族的规则库契约（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-007 |
 
 **Boundary:** this plugin checks a **规则库** (a rule pack) for the citation discipline this plugin family
 enforces — that rule ids are unique, that every basis field is present, that an excerpt has real length, that a

@@ -1,4 +1,27 @@
-# dsh-rulefile-check
+# dsh-rulefile-check — Autoverificação do ficheiro de regras segundo a disciplina de citações e os tetos de severidade
+
+`dsh-rulefile-check` lê um ficheiro de regras —o cabeçalho do ficheiro mais uma linha por regra— e confronta-o com a disciplina de citações que a sua família de plugins impõe: que cada id de regra seja único dentro do ficheiro, que os dois campos de fundamento estejam preenchidos, que nenhum extrato seja mais curto do que o comprimento mínimo, que toda a fonte esteja escrita como ligação http(s), que uma regra cujo tipo de fundamento seja `derived-from-principle` ou `institutional-configuration` traga uma severidade, que o tipo de verificação seja um que o motor aceite, e que o cabeçalho do ficheiro declare o nome, o plugin e a versão.
+
+## O que ele responde
+
+| Você pergunta | O que ele responde |
+|---|---|
+| O mesmo id de regra aparece em duas regras do ficheiro. | `RF-001` reporta o id repetido, porque uma duplicação faz com que `issue.id` aponte para duas regras diferentes e a ocorrência deixa de ser rastreável. A comparação ignora espaços em branco. Só vê um ficheiro de cada vez: não compara dois ficheiros entre si nem consulta qualquer registo. |
+| Uma regra traz apenas `document` e não diz nada sobre a cláusula. | `RF-002` verifica que pelo menos um dos dois campos de fundamento esteja preenchido, pelo que uma regra com `document` presente passa. Não julga se a cláusula citada existe realmente nem se tem relação com a regra. |
+| O extrato é uma descrição da cláusula numa frase, não uma citação. | `RF-003` exige que o extrato exista e tenha pelo menos oito caracteres. O comprimento é necessário, não suficiente: uma descrição de vinte caracteres continua a não ser uma citação, e esta regra não distingue — não confronta o extrato com a cláusula original. |
+| A fonte diz «某某网站» em vez de uma ligação. | `RF-004` reporta-o, porque o campo da fonte tem de se parecer com uma ligação http(s). Verifica apenas a forma: não visita a ligação, não lhe diz se a ligação funciona nem se a página contém realmente a cláusula citada. |
+| Uma regra derivada de um princípio está classificada como `error`. | `RF-005` confirma que uma regra cujo tipo de fundamento seja `derived-from-principle` ou `institutional-configuration` indique alguma severidade. Que essa severidade respeite de facto o teto é imposto pelo carregador, que rejeita esse ficheiro com `strongest permitted severity`; esta verificação só cobre a presença do campo e não pode substituir o carregador. |
+| O ficheiro escreve um `check.kind` que o motor não conhece — e declara o seu `packName` e a sua `version`? | `RF-006` reporta o `check.kind` desconhecido, porque essa regra não é executada em silêncio. A sua lista de tipos aceites vem vazia, já que quais tipos existem depende da versão do motor, pelo que um ficheiro por configurar deixa essa regra em `skipped` em vez de a aprovar; só compara com a lista que você fornecer. `RF-007` verifica em conjunto `packName`, `plugin` e `version` no cabeçalho, porque sem eles não se consegue saber a que plugin pertence um ficheiro, nem que revisão, ao substituí-lo. Nenhuma das duas confirma que os valores declarados correspondam ao plugin realmente em uso. |
+
+## Normas que segue
+
+Este ficheiro de regras não cita qualquer norma pública: o fundamento de cada regra é a disciplina de citações que a própria família de plugins se impõe, o seu contrato de motor e o seu contrato de ficheiro, pelo que as entradas abaixo nomeiam compromissos internos da família e não qualquer lei ou norma nacional.
+
+| Documento | Número | Regras que o citam |
+|---|---|---|
+| 本插件家族的条款引用纪律（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-001, RF-002, RF-003, RF-004, RF-005 |
+| 本插件家族的检查引擎契约（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-006 |
+| 本插件家族的规则库契约（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-007 |
 
 **Boundary:** this plugin checks a **规则库** (a rule pack) for the citation discipline this plugin family
 enforces — that rule ids are unique, that every basis field is present, that an excerpt has real length, that a
