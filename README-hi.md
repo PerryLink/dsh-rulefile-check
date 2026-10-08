@@ -42,8 +42,7 @@ engine supports, and that the pack declares its name, plugin and version.
 ## Install
 
 ```sh
-pnpm pack
-dsh plugin --profile <name> add ./*.tgz
+dsh plugin --profile <name> add dsh-rulefile-check
 dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
 ```
 
