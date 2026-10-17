@@ -4,6 +4,13 @@
 
 `dsh-rulefile-check` 读取一份规则库——库头加每条规则一行——按本插件家族强制的条款引用纪律核对这份规则库：规则编号在库内是否唯一、依据字段是否都写全、摘录是否短于最小长度、来源是否写成 http(s) 链接、依据类型为 `derived-from-principle` 或 `institutional-configuration` 的规则有没有填定级、检查类型是否为引擎所支持、库头是否声明名称、适用插件与版本。
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-rulefile-check
+dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
+```
+
 ## 实际输出长什么样
 
 ![Terminal demo of dsh-rulefile-check: real output over its RF-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-rulefile-check/main/docs/assets/dsh-rulefile-check-hero.png)
@@ -71,13 +78,6 @@ engine supports, and that the pack declares its name, plugin and version.
 ## What it does
 
 规则表、字段说明与行为细节见 [README.md](README.md#what-it-does)（英文主版本）。本插件只列出材料与所引条款之间的字面差异，并对无法执行的检查在 `skipped` 中逐项说明。
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-rulefile-check
-dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
-```
 
 ## Configuration
 

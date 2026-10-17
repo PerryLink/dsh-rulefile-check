@@ -4,6 +4,13 @@
 
 `dsh-rulefile-check` lê um ficheiro de regras —o cabeçalho do ficheiro mais uma linha por regra— e confronta-o com a disciplina de citações que a sua família de plugins impõe: que cada id de regra seja único dentro do ficheiro, que os dois campos de fundamento estejam preenchidos, que nenhum extrato seja mais curto do que o comprimento mínimo, que toda a fonte esteja escrita como ligação http(s), que uma regra cujo tipo de fundamento seja `derived-from-principle` ou `institutional-configuration` traga uma severidade, que o tipo de verificação seja um que o motor aceite, e que o cabeçalho do ficheiro declare o nome, o plugin e a versão.
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-rulefile-check
+dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
+```
+
 ## Como é a saída
 
 ![Terminal demo of dsh-rulefile-check: real output over its RF-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-rulefile-check/main/docs/assets/dsh-rulefile-check-hero.png)
@@ -71,13 +78,6 @@ engine supports, and that the pack declares its name, plugin and version.
 ## What it does
 
 A tabela de regras, os campos e o comportamento detalhado estão em [README.md](README.md#what-it-does) (versão principal em inglês). O plugin apenas lista divergências literais frente às cláusulas citadas e indica em `skipped` cada verificação que não pôde ser executada.
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-rulefile-check
-dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
-```
 
 ## Configuration
 

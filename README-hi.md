@@ -4,6 +4,13 @@
 
 `dsh-rulefile-check` एक नियम-फ़ाइल पढ़ता है — फ़ाइल का हेडर और प्रत्येक नियम की एक पंक्ति — और उस फ़ाइल को उस उद्धरण-अनुशासन से मिलाता है जिसे इसका प्लगइन-परिवार लागू करता है: क्या हर नियम आईडी फ़ाइल के भीतर अद्वितीय है, क्या आधार के दोनों फ़ील्ड भरे हैं, क्या कोई अंश न्यूनतम लंबाई से छोटा नहीं है, क्या हर स्रोत http(s) लिंक के रूप में लिखा है, क्या जिस नियम का आधार-प्रकार `derived-from-principle` या `institutional-configuration` है उसमें गंभीरता दर्ज है, क्या जाँच-प्रकार इंजन द्वारा समर्थित है, और क्या फ़ाइल का हेडर अपना नाम, प्लगइन और संस्करण घोषित करता है।
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-rulefile-check
+dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
+```
+
 ## आउटपुट कैसा दिखता है
 
 ![Terminal demo of dsh-rulefile-check: real output over its RF-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-rulefile-check/main/docs/assets/dsh-rulefile-check-hero.png)
@@ -71,13 +78,6 @@ engine supports, and that the pack declares its name, plugin and version.
 ## What it does
 
 नियम-सूची, फ़ील्ड और विस्तृत व्यवहार [README.md](README.md#what-it-does) (अंग्रेज़ी मुख्य संस्करण) में हैं। यह प्लगइन केवल उद्धृत धाराओं के सामने शाब्दिक अंतर सूचीबद्ध करता है और हर न चल पाई जाँच को `skipped` में बताता है।
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-rulefile-check
-dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
-```
 
 ## Configuration
 

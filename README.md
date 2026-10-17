@@ -4,6 +4,13 @@
 
 `dsh-rulefile-check` reads one rule pack — the pack header plus one row per rule — and checks that pack against the citation discipline its plugin family enforces: that every rule id is unique within the pack, that both basis fields are filled in, that no excerpt is shorter than the minimum length, that every source is written as an http(s) link, that a rule whose basis kind is `derived-from-principle` or `institutional-configuration` carries a severity, that the check kind is one the engine supports, and that the pack header declares its name, plugin and version.
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-rulefile-check
+dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
+```
+
 ## What it looks like
 
 ![Terminal demo of dsh-rulefile-check: real output over its RF-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-rulefile-check/main/docs/assets/dsh-rulefile-check-hero.png)
@@ -82,13 +89,6 @@ applies a versioned rule pack, and returns a report.
 | `RF-005` | a derived basis carries a severity | warn | self-imposed discipline |
 | `RF-006` | the check kind is supported (off by default) | warn | engine contract |
 | `RF-007` | the pack declares name, plugin and version | warn | pack contract |
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-rulefile-check
-dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
-```
 
 ## Configuration
 
