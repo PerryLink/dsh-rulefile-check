@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/assets/dsh-rulefile-check-hero.png",
+    "kind": "hero",
+    "alt": "dsh-rulefile-check terminal output",
+    "caption": "Real dsh-rulefile-check checker output; 31 tests passed."
+  },
+  {
+    "path": "docs/assets/dsh-rulefile-check-demo.gif",
+    "kind": "demo",
+    "alt": "Animated dsh-rulefile-check terminal session",
+    "caption": "The same run, assembled line by line."
+  }
+]
