@@ -42,10 +42,7 @@ dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
 | 本插件家族的检查引擎契约（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-006 |
 | 本插件家族的规则库契约（自定纪律，非国家标准） | 无编号（本规则库自定） | RF-007 |
 
-**Boundary:** this plugin checks a **规则库** (a rule pack) for the citation discipline this plugin family
-enforces — that rule ids are unique, that every basis field is present, that an excerpt has real length, that a
-source is a link, that a derived or locally configured basis carries a severity, that the check kind is one the
-engine supports, and that the pack declares its name, plugin and version.
+**边界（中文译文，以英文原文为准）：** 本插件核对一份 **规则库**（rule pack）是否符合本插件家族所强制执行的引用纪律——规则 id 是否唯一，每个依据字段是否齐备，摘录是否具有真实长度，来源是否为链接，派生依据或本机构配置依据是否带有严重级，检查类型是否为引擎支持的类型，以及规则库是否声明其名称、插件与版本。
 
 > ### ⚠️ This checks form, not content — and it says so
 >
