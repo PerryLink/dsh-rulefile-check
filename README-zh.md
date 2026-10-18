@@ -44,26 +44,13 @@ dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
 
 **边界（中文译文，以英文原文为准）：** 本插件核对一份 **规则库**（rule pack）是否符合本插件家族所强制执行的引用纪律——规则 id 是否唯一，每个依据字段是否齐备，摘录是否具有真实长度，来源是否为链接，派生依据或本机构配置依据是否带有严重级，检查类型是否为引擎支持的类型，以及规则库是否声明其名称、插件与版本。
 
-> ### ⚠️ This checks form, not content — and it says so
+> ### ⚠️ 这里核对的是形式，不是内容——而且它自己就这么说（以英文原文为准）
 >
-> **The discipline being checked is self-imposed, not a national standard.** "An excerpt must be a verbatim
-> quotation" and "a principle-derived check may not be an `error`" are rules this plugin family enforces in
-> `shared/ruleset.ts`; their basis is the general principle of intellectual honesty — never dress a description
-> up as a quotation, never dress an inference up as a requirement — **not any statute or standard**. Every
-> rule's `basis` says exactly that, which is why every rule here is `warn` or `info`.
+> **所核对的这套纪律是自定的，不是国家标准。**「摘录必须是逐字引文」与「由原则推论的检查不得标为 `error`」是本插件家族在 `shared/ruleset.ts` 中强制执行的规则；它们的依据是学术诚实这一一般原则——绝不把描述包装成引文，绝不把推论包装成要求——**而不是任何法规或标准**。每条规则的 `basis` 都如实写明这一点，这也是此处每条规则都是 `warn` 或 `info` 的原因。
 >
-> **It cannot tell whether a citation is apt.** It checks that fields are filled, that an excerpt is long
-> enough, that a source *looks like* a link, and that a severity is stated. It will happily pass a rule that
-> cites **a real but irrelevant clause** — that is the documented limit of a form check, and it is why
-> automated checking never replaces a human read-through.
+> **它无法判断一条引文是否贴切。** 它核对的是字段是否填写、摘录是否够长、来源*看起来是否像*链接，以及是否写明了严重级。它会欣然通过一条引用了**真实但无关条款**的规则——这正是形式核对已在文档中写明的局限，也是为什么自动核对永远不能取代人工通读。
 >
-> Two rules deserve a note. `RF-003`'s floor of eight characters is the ledger-side echo of the load-time guard
-> — but **length is necessary, not sufficient**: a twenty-character *description* is still not a quotation, and
-> this plugin cannot tell the difference. And `RF-005` can only confirm a severity field is present: whether a
-> severity actually respects the ceiling is enforced by the loader, which rejects a violating pack outright with
-> `strongest permitted severity`. `RF-006`'s kind vocabulary ships **empty**, because which kinds an engine
-> supports depends on the engine version — hard-coding this family's own list would mean editing this plugin
-> every time the engine gains a kind.
+> 有两条规则值得说明。`RF-003` 的八个字符下限，是加载期强制在台账一侧的呼应——但**长度是必要条件，不是充分条件**：二十个字符的*描述*仍然不是引文，本插件分不出两者的差别。而 `RF-005` 只能确认严重级字段存在：严重级是否真的未超过上限由加载器强制执行，它会以 `strongest permitted severity` 直接拒绝违规的规则库。`RF-006` 的 kind 取值清单出厂为**空**，因为引擎支持哪些 kind 取决于引擎版本——若把本家族自己的清单硬编码进去，就意味着引擎每新增一种 kind 都要改这个插件。
 
 ## Compatibility
 
