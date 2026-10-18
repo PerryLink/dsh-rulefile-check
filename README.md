@@ -1,5 +1,7 @@
 # dsh-rulefile-check — Rule pack self-check against the citation discipline and severity ceilings
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-rulefile-check` reads one rule pack — the pack header plus one row per rule — and checks that pack against the citation discipline its plugin family enforces: that every rule id is unique within the pack, that both basis fields are filled in, that no excerpt is shorter than the minimum length, that every source is written as an http(s) link, that a rule whose basis kind is `derived-from-principle` or `institutional-configuration` carries a severity, that the check kind is one the engine supports, and that the pack header declares its name, plugin and version.
