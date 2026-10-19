@@ -30,6 +30,35 @@ Salida real de este plugin sobre su propio fixture de prueba `RF-001` — no es 
 La tabla siguiente es el conjunto de ejemplos: la primera fila es el caso detallado y las demás son casos breves.
 
 
+#### Salida detallada
+
+**Herramienta** `rulefile_check`
+
+**Entrada**
+
+~~~json
+{"rows":[{"规则编号":"XX-001"},{"规则编号":"XX-001"}]}
+~~~
+ 
+**Salida**
+
+~~~json
+{
+  "id": "dsh-rulefile-check.RF-001.de02f9e1",
+  "ruleId": "RF-001",
+  "severity": "warn",
+  "locator": {
+    "row": 2,
+    "field": "ruleId"
+  },
+  "found": "第 2 行「ruleId」的值「XX-001」与第 1 行重复",
+  "expected": "「ruleId」在材料内应唯一",
+  "fix": "核对是否重复登记或抄错；本条只核对唯一性"
+}
+~~~
+
+*Observado en `dsh-rulefile-check/tests/fixtures/RF-001/RF-001-unsafe.json`*
+
 | Usted pregunta | Qué responde |
 |---|---|
 | El mismo id de regla aparece en dos reglas del archivo. | `RF-001` informa del id repetido, porque un duplicado hace que `issue.id` apunte a dos reglas distintas y la coincidencia ya no se puede rastrear. La comparación ignora los espacios en blanco. Solo ve un archivo a la vez: no compara dos archivos entre sí ni consulta ningún registro. |

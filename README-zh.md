@@ -30,6 +30,35 @@ dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
 下表是示例集：第一行是详细走查，其余行是简短案例。
 
 
+#### 详细输出
+
+**工具** `rulefile_check`
+
+**输入**
+
+~~~json
+{"rows":[{"规则编号":"XX-001"},{"规则编号":"XX-001"}]}
+~~~
+ 
+**输出**
+
+~~~json
+{
+  "id": "dsh-rulefile-check.RF-001.de02f9e1",
+  "ruleId": "RF-001",
+  "severity": "warn",
+  "locator": {
+    "row": 2,
+    "field": "ruleId"
+  },
+  "found": "第 2 行「ruleId」的值「XX-001」与第 1 行重复",
+  "expected": "「ruleId」在材料内应唯一",
+  "fix": "核对是否重复登记或抄错；本条只核对唯一性"
+}
+~~~
+
+*来源 `dsh-rulefile-check/tests/fixtures/RF-001/RF-001-unsafe.json`*
+
 | 你会问 | 它怎么答 |
 |---|---|
 | 同一个规则编号在库里出现在两条规则上。 | `RF-001` 会报出重复的编号，因为编号重复会让 `issue.id` 指向两条不同的规则，命中信息再也追溯不回去。比较时忽略空白字符。它一次只看一份规则库：不把两份库互相对比，也不去任何登记库查询。 |

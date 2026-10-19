@@ -28,6 +28,35 @@ dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
 
 The table below is the example set: the first row is the detailed walkthrough, the remaining rows are short cases.
 
+#### Detailed output
+
+**Tool** `rulefile_check`
+
+**Input**
+
+~~~json
+{"rows":[{"规则编号":"XX-001"},{"规则编号":"XX-001"}]}
+~~~
+ 
+**Output**
+
+~~~json
+{
+  "id": "dsh-rulefile-check.RF-001.de02f9e1",
+  "ruleId": "RF-001",
+  "severity": "warn",
+  "locator": {
+    "row": 2,
+    "field": "ruleId"
+  },
+  "found": "第 2 行「ruleId」的值「XX-001」与第 1 行重复",
+  "expected": "「ruleId」在材料内应唯一",
+  "fix": "核对是否重复登记或抄错；本条只核对唯一性"
+}
+~~~
+
+*Observed from `dsh-rulefile-check/tests/fixtures/RF-001/RF-001-unsafe.json`*
+
 | You ask | What it answers |
 |---|---|
 | The same rule id appears on two rules in the pack. | `RF-001` reports the repeated id, because a duplicate makes `issue.id` point at two different rules and the hit can no longer be traced back. Comparison ignores whitespace. It can only see one pack at a time: it does not compare two packs with each other or look anything up in a register. |
