@@ -15,13 +15,19 @@ dsh --profile <name> --dump-config | grep 'dsh-rulefile-check'
 
 ## Como é a saída
 
-![Terminal demo of dsh-rulefile-check: real output over its RF-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-rulefile-check/main/docs/assets/dsh-rulefile-check-hero.png)
+![Diagrama de fluxo de dsh-rulefile-check: documento → regras → achados.](docs/assets/dsh-rulefile-check-flow.svg)
 
-![Animated terminal demo of dsh-rulefile-check](https://raw.githubusercontent.com/PerryLink/dsh-rulefile-check/main/docs/assets/dsh-rulefile-check-demo.gif)
+*Visão geral do fluxo: documento → regras → achados. Os exemplos abaixo usam a superfície real de comandos.*
+
 
 Saída real deste plugin sobre o seu próprio fixture de teste `RF-001` — não é uma simulação. O pacote de regras não inventa citações, por isso cada achado nomeia a cláusula aplicada e avisa que o seu texto não foi obtido.
 
 ## O que ele responde
+
+### Exemplos
+
+A tabela abaixo é o conjunto de exemplos: a primeira linha é o caso detalhado e as demais são casos curtos.
+
 
 | Você pergunta | O que ele responde |
 |---|---|
