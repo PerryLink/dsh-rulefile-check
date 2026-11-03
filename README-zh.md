@@ -1,6 +1,6 @@
 # dsh-rulefile-check — 规则库文件自检核对
 
-## 快速试跑（1 分钟）
+### 快速试跑（1 分钟）
 
 ```bash
 node samples/quickstart/run.mjs --check
