@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-dark.svg">
-  <img src="docs/assets/dsh-rulefile-check-flow-light.svg" width="100%" alt="dsh-rulefile-check data flow: rule-pack file (JSON/YAML) → parseMaterial → RF-001…RF-007 rule pack → runCheck → report (found/expected/fix + skipped); differences only, no verdict, the original is never modified">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-rulefile-check-hero-en-light.webp" width="100%" alt="dsh-rulefile-check hero: rule-file self-check — the header plus one row per rule, checked field by field; the right side is the seven-rule (RF-001…RF-007) ledger with one real difference sample">
 </picture>
 
 # dsh-rulefile-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-rulefile-check
 `dsh-rulefile-check` reads one rule pack — the pack header plus one row per rule — and checks it against the citation discipline this plugin family enforces: that every rule id is unique within the pack, that both basis fields are filled in, that no excerpt is shorter than the minimum length, that every source is written as an http(s) link, that a rule whose basis kind is `derived-from-principle` or `institutional-configuration` carries a severity, that the check kind is one the engine supports, and that the pack header declares its name, plugin and version. You hand it a rule pack (JSON or YAML); it returns a list of what is inconsistent, where, and what to fix.
 
 It does not pass a compliance verdict, does not assign liability, does not replace the reviewer — and never modifies the original.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-rulefile-check-flow-v5-light.svg" width="100%" alt="dsh-rulefile-check structure: two inlets (rule-file material in JSON/YAML, and the seven-rule pack capped at load time by basis kind) feed runTableCheck across RF-001…RF-007, whose report has two outlets — issues (ruleId · severity · locator · found/expected/fix · basis) and skipped (rule + reason); differences only, no verdict, the original is never modified">
+</picture>
 
 ## Three-step setup
 
@@ -328,7 +333,7 @@ node ../scripts/sync-shared.mjs dsh-rulefile-check   # refresh src/shared from .
 pnpm pack
 ```
 
-The plugin is **data-only**: `src/model.ts` declares the table shape, `src/shared/` supplies the reader and the check engine, and the rule pack declares every check. The rule pack is data, not code: edit `rules/*.yaml` to switch the rule set without touching TypeScript, and the pack is validated on load rather than trusted. README assets are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) and can be re-run safely; this plugin has no UI, so the hero is a hand-written SVG flow diagram (light/dark pair, command-surface tokens only).
+The plugin is **data-only**: `src/model.ts` declares the table shape, `src/shared/` supplies the reader and the check engine, and the rule pack declares every check. The rule pack is data, not code: edit `rules/*.yaml` to switch the rule set without touching TypeScript, and the pack is validated on load rather than trusted. README assets are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) and can be re-run safely; this plugin has no UI, so the hero is a Pillow-rendered webp pair (zh/en × light/dark) and the structure diagram is a hand-written SVG pair (command-surface tokens only).
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `rulefile`
 

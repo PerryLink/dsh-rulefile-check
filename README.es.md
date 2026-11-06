@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-dark.svg">
-  <img src="docs/assets/dsh-rulefile-check-flow-light.svg" width="100%" alt="Flujo de datos de dsh-rulefile-check: archivo de reglas (JSON/YAML) → parseMaterial → paquete RF-001…RF-007 → runCheck → informe (found/expected/fix + skipped); solo diferencias, sin veredicto, el original nunca se modifica">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-rulefile-check-hero-en-light.webp" width="100%" alt="dsh-rulefile-check, imagen de cabecera: autocomprobación del archivo de reglas — la cabecera más una fila por regla, revisadas campo a campo; a la derecha, el registro de las siete reglas (RF-001…RF-007) con un ejemplo real de diferencia">
 </picture>
 
 # dsh-rulefile-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-rulefile-check
 `dsh-rulefile-check` lee un archivo de reglas —la cabecera del archivo más una fila por regla— y lo contrasta con la disciplina de citas que impone su familia de plugins: que cada id de regla sea único dentro del archivo, que los dos campos de fundamento estén completos, que ningún extracto sea más corto que la longitud mínima, que toda fuente esté escrita como enlace http(s), que una regla cuyo tipo de fundamento sea `derived-from-principle` o `institutional-configuration` lleve una severidad, que el tipo de comprobación sea uno que el motor admita, y que la cabecera del archivo declare su nombre, su plugin y su versión. Usted entrega el archivo de reglas (JSON o YAML) y recibe una lista de qué es inconsistente, dónde y cómo corregirlo.
 
 No emite un veredicto de conformidad, no atribuye responsabilidad, no sustituye al revisor —y nunca modifica el original.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-rulefile-check-flow-v5-light.svg" width="100%" alt="Estructura de dsh-rulefile-check: dos entradas (el material del archivo de reglas en JSON/YAML y el paquete de siete reglas con su techo fijado al cargar) alimentan runTableCheck sobre RF-001…RF-007, cuyo informe tiene dos salidas — issues (ruleId · severity · locator · found/expected/fix · basis) y skipped (regla + motivo); solo diferencias, sin veredicto, el original nunca se modifica">
+</picture>
 
 ## Instalación en tres pasos
 
@@ -315,7 +320,7 @@ node ../scripts/sync-shared.mjs dsh-rulefile-check   # refresca src/shared desde
 pnpm pack
 ```
 
-El plugin es **solo datos**: `src/model.ts` declara la forma de la tabla, `src/shared/` aporta el lector y el motor de comprobación, y el paquete de reglas declara cada comprobación. El paquete de reglas es dato, no código: edita `rules/*.yaml` para cambiar el conjunto de reglas sin tocar TypeScript, y el paquete se valida al cargar, no se confía en él. Las imágenes del README se generan programáticamente con [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) y pueden reejecutarse sin riesgo; este plugin no tiene UI, así que el hero es un diagrama de flujo SVG escrito a mano (par claro/oscuro, solo tokens de la superficie de comandos).
+El plugin es **solo datos**: `src/model.ts` declara la forma de la tabla, `src/shared/` aporta el lector y el motor de comprobación, y el paquete de reglas declara cada comprobación. El paquete de reglas es dato, no código: edita `rules/*.yaml` para cambiar el conjunto de reglas sin tocar TypeScript, y el paquete se valida al cargar, no se confía en él. Las imágenes del README se generan programáticamente con [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) y pueden reejecutarse sin riesgo; este plugin no tiene UI, así que el hero es un par de webp dibujado con Pillow (zh/en × claro/oscuro) y el diagrama de estructura es un par SVG escrito a mano (solo tokens de la superficie de comandos).
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `rulefile`
 

@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-dark.svg">
-  <img src="docs/assets/dsh-rulefile-check-flow-light.svg" width="100%" alt="dsh-rulefile-check 数据流：规则库文件（JSON/YAML）→ parseMaterial 读取 → RF-001…RF-007 规则包 → runCheck → 报告（found/expected/fix + skipped）；只列差异，不下结论，不改原件">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-rulefile-check-hero-zh-light.webp" width="100%" alt="dsh-rulefile-check 横幅：规则库自检——把规则库拆成库头与一行行规则逐栏核对，只列哪一条、哪一栏、差什么，绝不改原件；右侧是七条规则（RF-001…RF-007）的核对台账与一条真实差异样例">
 </picture>
 
 # dsh-rulefile-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-rulefile-check
 `dsh-rulefile-check` 读取一份规则库——库头加每条规则一行——按本插件家族强制的条款引用纪律核对这份规则库：规则编号在库内是否唯一、依据字段是否都写全、摘录是否短于最小长度、来源是否写成 http(s) 链接、依据类型为 `derived-from-principle` 或 `institutional-configuration` 的规则有没有填定级、检查类型是否为引擎所支持、库头是否声明名称、适用插件与版本。你交出规则库（JSON 或 YAML），它返回一份「哪一条、哪一栏、差什么」的差异清单。
 
 它不下合规结论、不认定责任、不替代审核人，也绝不修改原件。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-rulefile-check-flow-v5-light.svg" width="100%" alt="dsh-rulefile-check 结构图：规则库材料（JSON/YAML）与规则包（7 条，加载期按依据类型封顶）双入口 → runTableCheck 逐栏核对 RF-001…RF-007 → 报告双出口 issues（ruleId·severity·locator·found/expected/fix·basis）与 skipped（规则+原因）；只列差异、不下结论、不改原件">
+</picture>
 
 ## 三步上手
 
@@ -307,7 +312,7 @@ node ../scripts/sync-shared.mjs dsh-rulefile-check   # 从 ../_shared 刷新 src
 pnpm pack
 ```
 
-本插件是**数据驱动**的：`src/model.ts` 声明表结构，`src/shared/` 提供读取器与检查引擎，规则包声明每一项检查。规则包是数据不是代码：改 `rules/*.yaml` 即切换规则集，无需动 TypeScript；规则包在加载期校验，而非被信任。README 配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow），可重复执行；本插件无 UI，hero 为手写 SVG 流程图（深浅双版，图内仅命令面 token）。
+本插件是**数据驱动**的：`src/model.ts` 声明表结构，`src/shared/` 提供读取器与检查引擎，规则包声明每一项检查。规则包是数据不是代码：改 `rules/*.yaml` 即切换规则集，无需动 TypeScript；规则包在加载期校验，而非被信任。README 配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow），可重复执行；本插件无 UI，hero 为 Pillow 绘制的 webp（zh/en × 深浅双版），结构图为手写 SVG（深浅双版，图内仅命令面 token）。
 
 Topics：`dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `rulefile`
 

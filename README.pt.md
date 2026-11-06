@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-dark.svg">
-  <img src="docs/assets/dsh-rulefile-check-flow-light.svg" width="100%" alt="Fluxo de dados do dsh-rulefile-check: ficheiro de regras (JSON/YAML) → parseMaterial → pacote RF-001…RF-007 → runCheck → relatório (found/expected/fix + skipped); apenas diferenças, sem veredicto, o original nunca é alterado">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-rulefile-check-hero-en-light.webp" width="100%" alt="dsh-rulefile-check, imagem de cabeçalho: autoverificação do ficheiro de regras — o cabeçalho mais uma linha por regra, verificadas campo a campo; à direita, o registo das sete regras (RF-001…RF-007) com um exemplo real de diferença">
 </picture>
 
 # dsh-rulefile-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-rulefile-check
 `dsh-rulefile-check` lê um ficheiro de regras —o cabeçalho do ficheiro mais uma linha por regra— e confronta-o com a disciplina de citações que a sua família de plugins impõe: que cada id de regra seja único dentro do ficheiro, que os dois campos de fundamento estejam preenchidos, que nenhum extrato seja mais curto do que o comprimento mínimo, que toda a fonte esteja escrita como ligação http(s), que uma regra cujo tipo de fundamento seja `derived-from-principle` ou `institutional-configuration` traga uma severidade, que o tipo de verificação seja um que o motor aceite, e que o cabeçalho do ficheiro declare o nome, o plugin e a versão. Entrega o ficheiro de regras (JSON ou YAML) e recebe o que está inconsistente, onde e como corrigir.
 
 Não emite um veredicto de conformidade, não atribui responsabilidade, não substitui o revisor —e nunca altera o original.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-rulefile-check-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-rulefile-check: duas entradas (o material do ficheiro de regras em JSON/YAML e o pacote de sete regras com o teto fixado ao carregar) alimentam runTableCheck sobre RF-001…RF-007, cujo relatório tem duas saídas — issues (ruleId · severity · locator · found/expected/fix · basis) e skipped (regra + motivo); apenas diferenças, sem veredicto, o original nunca é alterado">
+</picture>
 
 ## Instalação em três passos
 
@@ -315,7 +320,7 @@ node ../scripts/sync-shared.mjs dsh-rulefile-check   # atualiza src/shared a par
 pnpm pack
 ```
 
-O plugin é **só dados**: `src/model.ts` declara a forma da tabela, `src/shared/` fornece o leitor e o motor de verificação, e o pacote de regras declara cada verificação. O pacote de regras é dado, não código: edite `rules/*.yaml` para trocar o conjunto de regras sem tocar em TypeScript, e o pacote é validado ao carregar, não é confiado. As imagens do README são geradas programaticamente por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) e podem ser reexecutadas sem risco; este plugin não tem UI, pelo que o hero é um diagrama de fluxo SVG escrito à mão (par claro/escuro, apenas tokens da superfície de comandos).
+O plugin é **só dados**: `src/model.ts` declara a forma da tabela, `src/shared/` fornece o leitor e o motor de verificação, e o pacote de regras declara cada verificação. O pacote de regras é dado, não código: edite `rules/*.yaml` para trocar o conjunto de regras sem tocar em TypeScript, e o pacote é validado ao carregar, não é confiado. As imagens do README são geradas programaticamente por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) e podem ser reexecutadas sem risco; este plugin não tem UI, pelo que o hero é um par de webp desenhado com Pillow (zh/en × claro/escuro) e o diagrama de estrutura é um par SVG escrito à mão (apenas tokens da superfície de comandos).
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `rulefile`
 

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="t d">
+<title id="t">dsh-rulefile-check structure: material and rule pack → seven-rule ledger → issues and skipped</title>
+<desc id="d">Two inputs (the material rule file and the validated rule pack) feed one seven-row check table; each rule checks one field and is capped at warn; the report has two outlets, issues and skipped.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0.95" y2="1"><stop offset="0" stop-color="#f9f6fd"/><stop offset="1" stop-color="#e4eaf8"/></linearGradient>
+<radialGradient id="glow" cx="0.82" cy="0.16" r="0.62"><stop offset="0" stop-color="#4B67B4" stop-opacity="0.10"/><stop offset="1" stop-color="#4B67B4" stop-opacity="0"/></radialGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1a2545" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1100" height="660" rx="20" fill="url(#bg)"/>
+<rect width="1100" height="660" rx="20" fill="url(#glow)"/>
+<text x="48" y="34" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11" letter-spacing="1.6">DSH PLUGIN · RULEFILE CHECK</text>
+<text x="48" y="68" fill="#1a2130" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="26" font-weight="700">Seven rules, one rule file</text>
+<text x="48" y="92" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="12">material + rule pack → runTableCheck → issues · skipped · the original is never modified</text>
+<text x="1052" y="68" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="12" text-anchor="end">7 rules · 12 material columns</text>
+<line x1="48" y1="104" x2="1052" y2="104" stroke="#d9e1f0" stroke-width="1"/>
+<rect x="40" y="112" width="480" height="128" rx="16" fill="#ffffff" stroke="#dbe2f1" stroke-width="1" filter="url(#sh)"/>
+<text x="64" y="136" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11" letter-spacing="1.2">MATERIAL · JSON / YAML</text>
+<text x="64" y="162" fill="#1a2130" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="16.5" font-weight="700">The rule file: header + one row per rule</text>
+<text x="64" y="186" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5">header  packName · plugin · version · engineKinds</text>
+<text x="64" y="206" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5">row     ruleId · basisKind · excerpt · source · checkKind</text>
+<text x="64" y="228" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">→ parseMaterial · aliases folded · missing fields become findings</text>
+<rect x="544" y="112" width="516" height="128" rx="16" fill="#ffffff" stroke="#dbe2f1" stroke-width="1" filter="url(#sh)"/>
+<text x="568" y="136" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11" letter-spacing="1.2">RULE PACK · LOAD-TIME</text>
+<text x="568" y="162" fill="#1a2130" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="16.5" font-weight="700">rules/rulefile-check.yaml · 7 rules</text>
+<text x="568" y="186" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5">cap by basis.kind: direct ≤ error · derived-from-principle ≤ warn</text>
+<text x="568" y="206" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5">institutional-configuration ≤ info</text>
+<text x="568" y="228" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">over the cap → loader rejects: strongest permitted severity</text>
+<path d="M280 242V262" fill="none" stroke="#5b6580" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M275.5 261L280 269L284.5 261" fill="none" stroke="#5b6580" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M802 242V262" fill="none" stroke="#5b6580" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M797.5 261L802 269L806.5 261" fill="none" stroke="#5b6580" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="40" y="272" width="1020" height="282" rx="18" fill="#ffffff" stroke="#dbe2f1" stroke-width="1" filter="url(#sh)"/>
+<text x="64" y="297" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13" font-weight="700">runTableCheck</text>
+<text x="182" y="297" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="12">· 7 rules, one check each</text>
+<text x="1036" y="297" fill="#7b859c" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11" text-anchor="end">pure · no I/O · no model</text>
+<text x="64" y="326" fill="#7b859c" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5" letter-spacing="1.1">RULE</text>
+<text x="160" y="326" fill="#7b859c" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5" letter-spacing="1.1">FIELD CHECKED</text>
+<text x="404" y="326" fill="#7b859c" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5" letter-spacing="1.1">CHECK KIND</text>
+<text x="596" y="326" fill="#7b859c" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5" letter-spacing="1.1">WHEN IT FIRES</text>
+<text x="984" y="326" fill="#7b859c" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5" letter-spacing="1.1">CAP</text>
+<line x1="64" y1="366" x2="1036" y2="366" stroke="#d9e1f0" stroke-width="1"/>
+<text x="64" y="356" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13.5" font-weight="700">RF-001</text>
+<text x="160" y="356" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">ruleId</text>
+<text x="404" y="356" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">unique</text>
+<text x="596" y="356" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="13">a duplicate id (whitespace ignored)</text>
+<rect x="980" y="345" width="46" height="20" rx="10" fill="#eef2fc"/>
+<text x="986" y="359" fill="#40588f" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">warn</text>
+<rect x="52" y="368" width="996" height="26" rx="7" fill="#f7f9fe"/>
+<line x1="64" y1="396" x2="1036" y2="396" stroke="#d9e1f0" stroke-width="1"/>
+<text x="64" y="386" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13.5" font-weight="700">RF-002</text>
+<text x="160" y="386" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">document · clause</text>
+<text x="404" y="386" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">presenceAny</text>
+<text x="596" y="386" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="13">both basis fields are empty</text>
+<rect x="980" y="375" width="46" height="20" rx="10" fill="#eef2fc"/>
+<text x="986" y="389" fill="#40588f" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">warn</text>
+<line x1="64" y1="426" x2="1036" y2="426" stroke="#d9e1f0" stroke-width="1"/>
+<text x="64" y="416" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13.5" font-weight="700">RF-003</text>
+<text x="160" y="416" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">excerpt</text>
+<text x="404" y="416" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">minLength ≥ 8</text>
+<text x="596" y="416" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="13">shorter than 8 characters</text>
+<rect x="980" y="405" width="46" height="20" rx="10" fill="#eef2fc"/>
+<text x="986" y="419" fill="#40588f" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">warn</text>
+<rect x="52" y="428" width="996" height="26" rx="7" fill="#f7f9fe"/>
+<line x1="64" y1="456" x2="1036" y2="456" stroke="#d9e1f0" stroke-width="1"/>
+<text x="64" y="446" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13.5" font-weight="700">RF-004</text>
+<text x="160" y="446" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">source</text>
+<text x="404" y="446" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">pattern</text>
+<text x="596" y="446" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="13">not an http(s) link</text>
+<rect x="980" y="435" width="46" height="20" rx="10" fill="#eef2fc"/>
+<text x="986" y="449" fill="#40588f" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">warn</text>
+<text x="64" y="476" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13.5" font-weight="700">RF-005</text>
+<text x="160" y="476" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">basisKind → severity</text>
+<text x="404" y="476" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">conditionalPresence</text>
+<text x="596" y="476" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="13">a derived/config basis has no severity</text>
+<rect x="980" y="465" width="46" height="20" rx="10" fill="#eef2fc"/>
+<text x="986" y="479" fill="#40588f" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">warn</text>
+<rect x="52" y="486" width="996" height="30" rx="10" fill="#f7f9fe"/>
+<text x="64" y="506" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13.5" font-weight="700">RF-006</text>
+<text x="160" y="506" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">checkKind</text>
+<text x="404" y="506" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">enum (values empty)</text>
+<text x="596" y="506" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="13">values empty → skipped, with a reason</text>
+<rect x="980" y="495" width="46" height="20" rx="10" fill="#eef2fc"/>
+<text x="986" y="509" fill="#40588f" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">warn</text>
+<text x="64" y="536" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13.5" font-weight="700">RF-007</text>
+<text x="160" y="536" fill="#1a2130" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">packName · plugin · version</text>
+<text x="404" y="536" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="13">headerPresence</text>
+<text x="596" y="536" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="13">the header misses any of the three</text>
+<rect x="980" y="525" width="46" height="20" rx="10" fill="#eef2fc"/>
+<text x="986" y="539" fill="#40588f" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11">warn</text>
+<rect x="52" y="486" width="996" height="30" rx="9" fill="none" stroke="#4B67B4" stroke-width="1.1" stroke-dasharray="6 4"/>
+<rect x="40" y="566" width="644" height="80" rx="16" fill="#ffffff" stroke="#dbe2f1" stroke-width="1" filter="url(#sh)"/>
+<text x="64" y="590" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="12.5" font-weight="700">↳ REPORT · issues[]</text>
+<text x="224" y="590" fill="#5b6580" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="12">one entry per difference</text>
+<text x="64" y="613" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5">ruleId · severity · locator{row, field} · found / expected / fix · basis</text>
+<text x="64" y="633" fill="#7b859c" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="11.5">lists differences only — no compliance, liability or correctness verdict</text>
+<rect x="708" y="566" width="352" height="80" rx="16" fill="#ffffff" stroke="#dbe2f1" stroke-width="1" filter="url(#sh)"/>
+<text x="732" y="590" fill="#4B67B4" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="12.5" font-weight="700">↳ skipped[] · did not run</text>
+<text x="732" y="613" fill="#5b6580" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,'Microsoft YaHei',monospace" font-size="11.5">rule · reason — RF-006 ships values empty</text>
+<text x="732" y="633" fill="#4B67B4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',system-ui,sans-serif" font-size="11.5">an empty list is never 'nothing is wrong'</text>
+</svg>

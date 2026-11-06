@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-dark.svg">
-  <img src="docs/assets/dsh-rulefile-check-flow-light.svg" width="100%" alt="dsh-rulefile-check डेटा-प्रवाह: नियम-फ़ाइल (JSON/YAML) → parseMaterial → नियम-पैक RF-001…RF-007 → runCheck → रिपोर्ट (found/expected/fix + skipped); केवल अंतर, कोई निर्णय नहीं, मूल कभी नहीं बदलता">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-rulefile-check-hero-en-light.webp" width="100%" alt="dsh-rulefile-check बैनर: नियम-फ़ाइल का स्व-निरीक्षण — हेडर और हर नियम की एक पंक्ति, हर फ़ील्ड की जाँच; दाईं ओर सात नियमों (RF-001…RF-007) का खाता और एक वास्तविक अंतर का नमूना">
 </picture>
 
 # dsh-rulefile-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-rulefile-check
 `dsh-rulefile-check` एक नियम-फ़ाइल पढ़ता है — फ़ाइल का हेडर और प्रत्येक नियम की एक पंक्ति — और उसे उस उद्धरण-अनुशासन से मिलाता है जिसे यह प्लगइन-परिवार लागू करता है: क्या फ़ाइल के भीतर हर नियम आईडी अद्वितीय है, क्या आधार के दोनों फ़ील्ड भरे हैं, क्या कोई अंश न्यूनतम लंबाई से छोटा है, क्या हर स्रोत http(s) लिंक के रूप में लिखा है, क्या जिस नियम का आधार-प्रकार `derived-from-principle` या `institutional-configuration` है उसमें गंभीरता दर्ज है, क्या जाँच-प्रकार इंजन द्वारा समर्थित है, और क्या फ़ाइल का हेडर अपना नाम, प्लगइन और संस्करण घोषित करता है। आप नियम-फ़ाइल (JSON या YAML) सौंपते हैं और «कौन-सा नियम, कौन-सा कॉलम, क्या कम है» की सूची पाते हैं।
 
 यह अनुपालन का निर्णय नहीं देता, उत्तरदायित्व नहीं ठहराता, समीक्षक की जगह नहीं लेता — और मूल को कभी नहीं बदलता।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-rulefile-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-rulefile-check-flow-v5-light.svg" width="100%" alt="dsh-rulefile-check की संरचना: दो प्रवेश (JSON/YAML में नियम-फ़ाइल सामग्री, और लोड के समय आधार-प्रकार से सीमित सात-नियम पैक) runTableCheck में मिलते हैं, जिसकी रिपोर्ट के दो निकास हैं — issues (ruleId · severity · locator · found/expected/fix · basis) और skipped (नियम + कारण); केवल अंतर, कोई निर्णय नहीं, मूल कभी नहीं बदलता">
+</picture>
 
 ## तीन चरणों में शुरुआत
 
@@ -315,7 +320,7 @@ node ../scripts/sync-shared.mjs dsh-rulefile-check   # ../_shared से src/sha
 pnpm pack
 ```
 
-यह प्लगइन **केवल-डेटा** है: `src/model.ts` तालिका का आकार घोषित करता है, `src/shared/` पाठक और जाँच-इंजन देता है, और नियम-पैक हर जाँच घोषित करता है। नियम-पैक डेटा है, कोड नहीं: नियम-सेट बदलने के लिए `rules/*.yaml` संपादित करें, TypeScript छुए बिना; पैक लोड के समय सत्यापित होता है, भरोसा नहीं किया जाता। README चित्र [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) से प्रोग्रामेटिक रूप से बनते हैं और सुरक्षित रूप से फिर चलाए जा सकते हैं; इस प्लगइन में UI नहीं है, इसलिए hero हाथ-लिखा SVG प्रवाह-आरेख है (हल्का/गहरा जोड़ा, केवल कमांड-सतह token)।
+यह प्लगइन **केवल-डेटा** है: `src/model.ts` तालिका का आकार घोषित करता है, `src/shared/` पाठक और जाँच-इंजन देता है, और नियम-पैक हर जाँच घोषित करता है। नियम-पैक डेटा है, कोड नहीं: नियम-सेट बदलने के लिए `rules/*.yaml` संपादित करें, TypeScript छुए बिना; पैक लोड के समय सत्यापित होता है, भरोसा नहीं किया जाता। README चित्र [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) से प्रोग्रामेटिक रूप से बनते हैं और सुरक्षित रूप से फिर चलाए जा सकते हैं; इस प्लगइन में UI नहीं है, इसलिए hero Pillow से बना webp जोड़ा है (zh/en × हल्का/गहरा) और संरचना-आरेख हाथ-लिखा SVG जोड़ा है (केवल कमांड-सतह token)।
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `rulefile`
 
