@@ -45,6 +45,11 @@ Não emite um veredicto de conformidade, não atribui responsabilidade, não sub
   <img src="docs/assets/dsh-rulefile-check-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-rulefile-check: duas entradas (o material do ficheiro de regras em JSON/YAML e o pacote de sete regras com o teto fixado ao carregar) alimentam runTableCheck sobre RF-001…RF-007, cujo relatório tem duas saídas — issues (ruleId · severity · locator · found/expected/fix · basis) e skipped (regra + motivo); apenas diferenças, sem veredicto, o original nunca é alterado">
 </picture>
 
+![dsh-rulefile-check: execução real de terminal](docs/assets/dsh-rulefile-check-demo.gif)
+
+*Repetição animada de uma execução real registrada neste repositório.*
+
+
 ## Instalação em três passos
 
 1. **Instale**:

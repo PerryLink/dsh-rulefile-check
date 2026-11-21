@@ -123,6 +123,10 @@ rule pack (JSON / YAML) ──parseMaterial──▶ header + rows ──runChec
 
 ### Examples
 
+![dsh-rulefile-check: real terminal run](docs/assets/dsh-rulefile-check-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
 These are the plugin's real entry points; install once, then call one.
 
 **Detailed output** — tool `rulefile_check`, input:

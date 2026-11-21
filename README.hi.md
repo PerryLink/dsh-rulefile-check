@@ -45,6 +45,11 @@ dsh plugin --profile <name> add dsh-rulefile-check
   <img src="docs/assets/dsh-rulefile-check-flow-v5-light.svg" width="100%" alt="dsh-rulefile-check की संरचना: दो प्रवेश (JSON/YAML में नियम-फ़ाइल सामग्री, और लोड के समय आधार-प्रकार से सीमित सात-नियम पैक) runTableCheck में मिलते हैं, जिसकी रिपोर्ट के दो निकास हैं — issues (ruleId · severity · locator · found/expected/fix · basis) और skipped (नियम + कारण); केवल अंतर, कोई निर्णय नहीं, मूल कभी नहीं बदलता">
 </picture>
 
+![dsh-rulefile-check का असली टर्मिनल रन](docs/assets/dsh-rulefile-check-demo.gif)
+
+*इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
+
+
 ## तीन चरणों में शुरुआत
 
 1. **इंस्टॉल करें**:

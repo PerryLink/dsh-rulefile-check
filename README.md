@@ -36,6 +36,10 @@ dsh plugin --profile <name> add dsh-rulefile-check
 
 ## 它是什么
 
+![dsh-rulefile-check 真实终端运行](docs/assets/dsh-rulefile-check-demo.gif)
+
+*本仓库一次真实运行的动图回放。*
+
 `dsh-rulefile-check` 读取一份规则库——库头加每条规则一行——按本插件家族强制的条款引用纪律核对这份规则库：规则编号在库内是否唯一、依据字段是否都写全、摘录是否短于最小长度、来源是否写成 http(s) 链接、依据类型为 `derived-from-principle` 或 `institutional-configuration` 的规则有没有填定级、检查类型是否为引擎所支持、库头是否声明名称、适用插件与版本。你交出规则库（JSON 或 YAML），它返回一份「哪一条、哪一栏、差什么」的差异清单。
 
 它不下合规结论、不认定责任、不替代审核人，也绝不修改原件。
