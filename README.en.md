@@ -7,6 +7,8 @@
 
 # dsh-rulefile-check
 
+Current version `0.2.12`.
+
 **Check a rule pack line by line — unique rule ids, complete basis fields, real excerpt length, link-shaped sources and severity ceilings — and get back what is inconsistent, where, and what to fix.**
 
 A DeepSeek Harness checker for rule-pack maintainers: it applies this plugin family's self-imposed citation discipline and severity ceilings, lists only the formal differences a rule pack can be held to mechanically, and does not decide compliance, assign liability or modify the original.
