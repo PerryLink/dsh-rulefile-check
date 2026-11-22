@@ -11,6 +11,8 @@
 
 Um verificador DeepSeek Harness para mantenedores de ficheiros de regras: aplica a disciplina de citações e os tetos de severidade que esta família de plugins se impõe, enumera apenas as diferenças formais que um ficheiro de regras pode sustentar mecanicamente, e não decide conformidade, não atribui responsabilidade nem altera o original.
 
+Última verificação: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalar](#instalação-em-três-passos) · [Configuração](#configuração) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -48,7 +50,6 @@ Não emite um veredicto de conformidade, não atribui responsabilidade, não sub
 ![dsh-rulefile-check: execução real de terminal](docs/assets/dsh-rulefile-check-demo.gif)
 
 *Repetição animada de uma execução real registrada neste repositório.*
-
 
 ## Instalação em três passos
 
